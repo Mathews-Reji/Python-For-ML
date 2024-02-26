@@ -214,7 +214,7 @@ sns.boxplot(y=df_class['Resourse Person'],x=df_class['Content Quality'])
 plt.show()
 ```
 OUTPUT:
-![rp,cq](https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/c986640f-4e43-4251-841f-32daff4c036f)
+![rp,cq](https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/c50e18d5-3a7e-4b20-94db-7149b15c3754)
 
 #### 2)creating boxplot on Effectiveness v/s Resource person
 ```python
@@ -222,7 +222,8 @@ sns.boxplot(y=df_class['Resourse Person'],x=df_class['Content Quality'])
 plt.show()
 ```
 OUTPUT:
-![rp ef](https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/b93ab9c8-74a9-4c4a-80c6-3648140e889d)
+
+![2](https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/bdb9da87-4ab0-4f5a-b96b-4c23ecd51f3c)
 
 #### 3)creating boxplot on Relevance v/s Resource person
 ```python
@@ -230,7 +231,7 @@ sns.boxplot(y=df_class['Resourse Person'],x=df_class['Content Quality'])
 plt.show()
 ```
 OUTPUT:
-![rp , re](https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/7c4775f7-1d6e-48c6-a51d-09ec7356c9ab)
+![3](https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/fc9410ed-a285-4f75-888b-6bbb72654a87)
 
 #### 4)creating boxplot on Overall Organization v/s Resource person
 ```python
@@ -238,7 +239,8 @@ sns.boxplot(y=df_class['Resourse Person'],x=df_class['Content Quality'])
 plt.show()
 ```
 OUTPUT:
-![rp,oo](https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/a6c51267-3710-4cc7-a116-6e557f121c84)
+
+![4](https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/a0396a1d-34ef-4b4d-ace7-2f43ef633f50)
 
 #### 5)creating boxplot on Expertise v/s Resource person
 ```
@@ -247,7 +249,8 @@ plt.show()
 ```
 OUTPUT:
 
-![exp vs rp](https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/fa7f489b-e26d-450b-9ac8-0c0b58a47920)
+
+<img width="576" alt="5" src="https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/e4109392-b05e-41e4-9a44-fac90df955fc">
 
 #### 6)creating boxplot on Branch  v/s Content quality
 
@@ -256,7 +259,7 @@ sns.boxplot(y=df_class['Resourse Person'],x=df_class['Content Quality'])
 plt.show()
 ```
 OUTPUT:
-![branch cq](https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/91612824-a504-41e1-9420-4d940c103188)
+![6](https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/e110ebb1-f08d-46e8-ad32-9945430b6377)
 
 ### Step-6:Unsupervised machine learning
 Using K-means Clustering to identify segmentation over student's satisfaction.
