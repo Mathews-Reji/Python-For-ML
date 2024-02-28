@@ -92,4 +92,198 @@ StudentAbsenceDays          0
 Class                       0
 dtype: int64
 ```
+removing unnecessary columns
+```
+df_class= df_class.drop(['NationalITy','PlaceofBirth','StageID','GradeID','SectionID','Topic','Semester','Relation'],axis=1)
+```
 ## 3.Exploratory Data Analysis
+Relation between raising hands and classification
+```
+df_class['raisedhands'] = pd.cut(df_class.raisedhands, bins=3, labels=np.arange(3), right=False)
+df_class.groupby(['raisedhands'])['Class'].value_counts(normalize=True)
+```
+OUTPUT:
+raisedhands  Class
+0            L        0.534314
+             M        0.392157
+             H        0.073529
+1            M        0.577778
+             H        0.288889
+             L        0.133333
+2            H        0.543011
+             M        0.424731
+             L        0.032258
+Name: proportion, dtype: float64
+
+Relation between visited resourses and classification
+
+```
+df_class['VisITedResources'] = pd.cut(df_class.VisITedResources, bins=3, labels=np.arange(3), right=False)
+df_class.groupby(['VisITedResources'])['Class'].value_counts(normalize=True)
+```
+OUTPUT:
+VisITedResources  Class
+0                 L        0.656250
+                  M        0.293750
+                  H        0.050000
+1                 M        0.560976
+                  H        0.231707
+                  L        0.207317
+2                 M        0.495798
+                  H        0.483193
+                  L        0.021008
+Name: proportion, dtype: float64
+
+Relation between Announcements View  and classification
+```
+df_class['AnnouncementsView'] = pd.cut(df_class.AnnouncementsView, bins=3, labels=np.arange(3), right=False)
+df_class.groupby(['AnnouncementsView'])['Class'].value_counts(normalize=True)
+```
+OUTPUT:
+AnnouncementsView  Class
+0                  L        0.468354
+                   M        0.388186
+                   H        0.143460
+1                  M        0.506667
+                   H        0.393333
+                   L        0.100000
+2                  H        0.526882
+                   M        0.462366
+                   L        0.010753
+Name: proportion, dtype: float64
+
+Relation between Discussion  and classification
+```
+df_class['Discussion'] = pd.cut(df_class.Discussion, bins=3, labels=np.arange(3), right=False)
+df_class.groupby(['Discussion'])['Class'].value_counts(normalize=True)
+```
+OUTPUT:
+iscussion  Class
+0           M        0.416290
+            L        0.371041
+            H        0.212670
+1           M        0.538462
+            H        0.253846
+            L        0.207692
+2           H        0.480620
+            M        0.379845
+            L        0.139535
+Name: proportion, dtype: float64
+
+Relation between StudentAbsenceDays and classification
+
+```
+df_class.groupby(['StudentAbsenceDays'])['Class'].value_counts(normalize=True)
+```
+OUTPUT:
+tudentAbsenceDays  Class
+Above-7             L        0.607330
+                    M        0.371728
+                    H        0.020942
+Under-7             M        0.484429
+                    H        0.477509
+                    L        0.038062
+Name: proportion, dtype: float64
+
+## Visualization
+
+1)creating boxplot on raisedhands v/s Class
+```
+sns.boxplot(y=df_class['Class'],x=df_class['raisedhands'])
+plt.show()
+```
+OUTPUT:
+<img width="465" alt="2" src="https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/d0012005-2c31-4db4-a787-41f6b7fbdcd3">
+
+2)creating boxplot on Visited Resources v/s Class
+```
+sns.boxplot(y=df_class['Class'],x=df_class['VisITedResources'])
+plt.show()
+```
+OUTPUT:
+<img width="440" alt="3" src="https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/f85e18c4-da8c-4e28-b2dd-92632811dff6">
+
+
+3)creating boxplot on AnnouncementView v/s Class
+```
+sns.boxplot(y=df_class['Class'],x=df_class['AnnouncementsView'])
+plt.show()
+```
+OUTPUT:
+
+<img width="435" alt="4" src="https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/45b73676-7e57-4dca-928b-62ab778bd408">
+
+
+4)creating boxplot on Discussion v/s Class
+```
+sns.boxplot(y=df_class['Class'],x=df_class['Discussion'])
+plt.show()
+```
+OUTPUT:
+<img width="465" alt="5" src="https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/36bd1c0f-62e6-4f35-b51b-3d4dd01242c7">
+
+
+5)creating boxplot on StudentAbsenceDays v/s Class
+```
+sns.boxplot(y=df_class['Class'],x=df_class['StudentAbsenceDays'])
+plt.show()
+```
+OUTPUT:
+<img width="476" alt="6" src="https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/b2703efe-a513-47e3-a680-5c239c1d67f2">
+
+## Correlation 
+```
+correlation = df_class[['raisedhands','VisITedResources','AnnouncementsView','Discussion']].corr(method='pearson')
+correlation
+```
+OUTPUT:
+
+<img width="427" alt="7" src="https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/799d416c-b40a-408a-b367-18cd426b8053">
+
+
+## Elbow Method
+
+```
+X = df_class[['raisedhands', 'VisITedResources']].values
+wcss = []
+ 
+for i in range(1, 11):
+    kmeans = KMeans(n_clusters = i, init = 'k-means++')
+    kmeans.fit(X)
+    #print (i,kmeans.inertia_)
+    wcss.append(kmeans.inertia_)  
+plt.plot(range(1, 11), wcss,marker='o')
+plt.title('Elbow Method')
+plt.xlabel('N of Clusters')
+plt.ylabel('WSS') #within cluster sum of squares
+plt.show()
+```
+OUTPUT:
+
+<img width="501" alt="8" src="https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/1c7996d8-3760-42a7-9857-dac380709ec9">
+
+
+## k-Means Clustering
+```
+kmeans = KMeans(n_clusters = 3, init = 'k-means++')
+kmeans.fit(X)
+```
+
+```
+k_means_labels = kmeans.labels_
+k_means_cluster_centers = kmeans.cluster_centers_
+```
+
+```
+plt.scatter(X[:, 0], X[:,1], s = 10, c = kmeans.labels_)
+plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], s = 30, c = 'red',label = 'Centroids')
+plt.title('Students Clustering')
+plt.xlabel('RaisedHands')
+plt.ylabel('VisITedResources')
+plt.legend()
+
+plt.show()
+```
+OUTPUT:
+
+<img width="492" alt="9" src="https://github.com/Mathews-Reji/Python-For-ML/assets/149689917/54576302-b813-4655-8ed8-a8efbcb0faad">
